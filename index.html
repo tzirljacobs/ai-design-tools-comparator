@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Design Tools Comparator</title>
+  <meta name="description" content="Compare AI tools across all UX/UI & web design stages." />
+  <style>
+    :root{--bg:#0b0f14;--panel:#121821;--ink:#fff;--muted:#aab3c2;--chip:#192231;--brand:#64d2ff}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0}
+    header,footer{padding:1rem;background:var(--panel)}
+    .wrap{max-width:1200px;margin:0 auto}
+    h1{margin:0;font-size:1.6rem}
+    .controls{margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center}
+    input,select{padding:0.45rem 0.55rem;border-radius:8px;border:1px solid #2a3240;background:var(--chip);color:var(--ink)}
+    button{padding:0.45rem 0.8rem;border-radius:8px;border:1px solid #2a3240;background:var(--brand);color:#000;cursor:pointer}
+    .grid{display:grid;grid-template-columns:1.4fr 2fr 1.2fr 1fr auto;gap:1rem;align-items:start}
+    .row{border-top:1px solid #243044;padding:1rem 0}
+    .badge{background:var(--chip);padding:2px 8px;border-radius:999px;font-size:0.75rem;margin:2px;display:inline-block;white-space:nowrap}
+    a{color:var(--brand)}
+    .count{margin-left:auto;color:var(--muted);font-size:0.9rem}
+    .sticky-head{position:sticky;top:0;background:var(--bg);padding-top:0.5rem}
+    .hint{color:var(--muted);font-size:0.9rem}
+    #about{padding:2rem 1rem;background:#0e141d;border-top:1px solid #243044;margin-top:1rem}
+    #about h2{margin-top:0}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+      <strong>AI Design Tools Comparator</strong>
+      <div style="display:flex;gap:1rem;font-size:0.9rem">
+        <a href="#about">About</a>
+        <a href="#rows">Tools</a>
+        <a href="#" onclick="document.getElementById('exportBtn').click()">Export</a>
+      </div>
+    </nav>
+
+    <h1>AI Design Tools Comparator</h1>
+    <p class="hint">Search, pick a stage, or choose a price. The full list displays by default.</p>
+<p class="hint">Last updated: September 2026 · 47 tools and growing</p>
+
+    <div class="controls">
+      <input id="search" placeholder="Search tools..." />
+      <select id="categorySelect" title="Filter by stage"></select>
+      <select id="priceSelect" title="Filter by price">
+        <option value="">Any price</option>
+        <option>Free</option>
+        <option>Freemium</option>
+        <option>Paid</option>
+        <option>Enterprise</option>
+      </select>
+      <button id="resetBtn">Reset</button>
+      <button id="exportBtn">Export CSV</button>
+      <div class="count" id="count"></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid sticky-head" style="font-weight:bold;border-bottom:1px solid #243044;padding-bottom:0.5rem">
+    <div>Tool</div>
+    <div>Description</div>
+    <div>Stages</div>
+    <div>Price</div>
+    <div>Link</div>
+  </div>
+  <div id="rows"></div>
+</main>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About & Categories</h2>
+    <p class="hint">This comparator groups AI tools across the full UX/UI & web design lifecycle.</p>
+    <ul>
+      <li><strong>Competitor & Market Research</strong> – problem framing, competitive scan</li>
+      <li><strong>User Research & Requirements</strong> – interviews, surveys, requirements</li>
+      <li><strong>Information Architecture (IA)</strong> – sitemaps, navigation, content models</li>
+      <li><strong>Interaction Design / Wireframing</strong> – flows, low-fi screens</li>
+      <li><strong>Visual Design & Design System</strong> – tokens, palettes, components, accessibility</li>
+      <li><strong>Prototyping</strong> – interactive prototypes for walkthroughs</li>
+      <li><strong>Usability Testing & Validation</strong> – tests, analytics, validation</li>
+      <li><strong>Content Strategy & Copy</strong> – product copy, docs, content planning</li>
+      <li><strong>Handoff & Build</strong> – design-to-code, specs, developer handoff</li>
+      <li><strong>Site Builders & CMS / Launch</strong> – Framer, Webflow, Wix, WP etc</li>
+      <li><strong>Measure & Optimize</strong> – heatmaps, funnels, iterations</li>
+      <li><strong>Accessibility & Quality</strong> – cross-device and a11y checks</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+  Created by TJ ·
+  <a href="mailto:tjcreativeweb@gmail.com">tjcreativeweb@gmail.com</a>
+  · Suggest a tool via email
+</div>
+
+  </div>
+</footer>
+
+<script type="application/json" id="tools-data">
+{
+  "stages": [
+    "Competitor & Market Research",
+    "User Research & Requirements",
+    "Information Architecture (IA)",
+    "Interaction Design / Wireframing",
+    "Visual Design & Design System",
+    "Prototyping",
+    "Usability Testing & Validation",
+    "Content Strategy & Copy",
+    "Handoff & Build",
+    "Site Builders & CMS / Launch",
+    "Measure & Optimize",
+    "Accessibility & Quality"
+  ],
+  "tools": [
+    {"name":"Figma (with AI)","stage":["Interaction Design / Wireframing","Visual Design & Design System","Prototyping","Handoff & Build"],"price":"Freemium","what":"Design system, components, AI actions/content.","url":"https://www.figma.com/ai"},
+    {"name":"FigJam AI","stage":["User Research & Requirements","Information Architecture (IA)"],"price":"Freemium","what":"Workshops, diagramming, stickies, AI facilitation.","url":"https://www.figma.com/figjam/ai/"},
+    {"name":"Framer AI","stage":["Site Builders & CMS / Launch","Prototyping","Visual Design & Design System"],"price":"Freemium","what":"Prompt-to-website with visual editor and hosting.","url":"https://www.framer.com/ai/"},
+    {"name":"Webflow AI","stage":["Site Builders & CMS / Launch","Content Strategy & Copy","Handoff & Build"],"price":"Paid","what":"AI-assisted structure, copy, CMS in Webflow.","url":"https://webflow.com/ai"},
+    {"name":"Wix AI (ADI)","stage":["Site Builders & CMS / Launch","Content Strategy & Copy","Visual Design & Design System"],"price":"Freemium","what":"Generate sites and copy via prompts.","url":"https://www.wix.com/ai"},
+    {"name":"WordPress + Jetpack AI","stage":["Site Builders & CMS / Launch","Content Strategy & Copy"],"price":"Freemium","what":"AI writing and assistance inside WordPress.","url":"https://jetpack.com/ai"},
+    {"name":"Relume AI","stage":["Information Architecture (IA)","Handoff & Build","Site Builders & CMS / Launch"],"price":"Freemium","what":"AI sitemaps + sections; export to Webflow/Framer.","url":"https://www.relume.io/ai"},
+    {"name":"Galileo AI","stage":["Interaction Design / Wireframing","Visual Design & Design System"],"price":"Paid","what":"Generate UI mockups from natural language.","url":"https://www.usegalileo.ai/"},
+    {"name":"Uizard","stage":["Interaction Design / Wireframing","Prototyping","Visual Design & Design System"],"price":"Freemium","what":"Turn prompts/screenshots into editable mockups.","url":"https://uizard.io/"},
+    {"name":"Motiff","stage":["Interaction Design / Wireframing","Visual Design & Design System","Prototyping"],"price":"Freemium","what":"Generate and iterate UIs from text/images.","url":"https://motiff.com/"},
+    {"name":"Aura","stage":["Interaction Design / Wireframing","Visual Design & Design System"],"price":"Freemium","what":"Generate responsive UI; export HTML/Figma.","url":"https://aura.build/"},
+    {"name":"MagicPath","stage":["Interaction Design / Wireframing","Visual Design & Design System","Handoff & Build"],"price":"Freemium","what":"Prompt-to-layout AI design canvas.","url":"https://www.magicpath.ai/"},
+    {"name":"tweakcn (shadcn/ui themes)","stage":["Visual Design & Design System"],"price":"Freemium","what":"Generate/edit shadcn/ui themes from images/prompts.","url":"https://tweakcn.com/ai"},
+    {"name":"Coolors","stage":["Visual Design & Design System"],"price":"Freemium","what":"Palette generation and exploration (AI features).","url":"https://coolors.co/"},
+    {"name":"Notion AI","stage":["User Research & Requirements","Information Architecture (IA)","Content Strategy & Copy"],"price":"Freemium","what":"Summaries, PRDs, content organization.","url":"https://www.notion.so/product/ai"},
+    {"name":"Monday.com AI","stage":["User Research & Requirements"],"price":"Paid","what":"Planning, docs, task automation.","url":"https://monday.com/"},
+    {"name":"ClickUp AI","stage":["User Research & Requirements"],"price":"Paid","what":"AI writing and planning in ClickUp.","url":"https://clickup.com/"},
+    {"name":"Microsoft Copilot","stage":["User Research & Requirements","Content Strategy & Copy"],"price":"Paid","what":"AI across Microsoft 365.","url":"https://copilot.microsoft.com/"},
+    {"name":"Google Gemini","stage":["Competitor & Market Research","Content Strategy & Copy"],"price":"Freemium","what":"Multimodal assistant for research and content.","url":"https://deepmind.google/technologies/gemini/"},
+    {"name":"ChatGPT","stage":["Competitor & Market Research","Content Strategy & Copy","User Research & Requirements"],"price":"Freemium","what":"General assistant for writing, research, ideation.","url":"https://chat.openai.com/"},
+    {"name":"Perplexity","stage":["Competitor & Market Research"],"price":"Freemium","what":"Research copilot with citations.","url":"https://www.perplexity.ai/"},
+    {"name":"Maze (AI Insights)","stage":["Usability Testing & Validation","Prototyping"],"price":"Freemium","what":"Automated test summaries and analytics.","url":"https://maze.co/"},
+    {"name":"Dovetail AI","stage":["User Research & Requirements","Usability Testing & Validation"],"price":"Enterprise","what":"Research repo with AI summaries/tagging.","url":"https://dovetailapp.com/"},
+    {"name":"UserTesting AI","stage":["Usability Testing & Validation"],"price":"Enterprise","what":"AI participant insights and analysis.","url":"https://www.usertesting.com/"},
+    {"name":"Hotjar (AI Heatmaps)","stage":["Measure & Optimize","Usability Testing & Validation"],"price":"Freemium","what":"Behavior analytics with AI summaries/heatmaps.","url":"https://www.hotjar.com/"},
+    {"name":"Airtable AI","stage":["Information Architecture (IA)","User Research & Requirements"],"price":"Freemium","what":"Database/workflow with AI assistance.","url":"https://www.airtable.com/"},
+    {"name":"Canva Magic Studio","stage":["Visual Design & Design System","Content Strategy & Copy"],"price":"Freemium","what":"Canva's AI for images/design/copy.","url":"https://www.canva.com/magic/"},
+    {"name":"Midjourney","stage":["Visual Design & Design System"],"price":"Paid","what":"High-quality image generation.","url":"https://www.midjourney.com/"},
+    {"name":"Stable Diffusion","stage":["Visual Design & Design System"],"price":"Free","what":"Open-source image generation (local/hosted).","url":"https://stability.ai/"},
+    {"name":"Adobe Firefly","stage":["Visual Design & Design System"],"price":"Freemium","what":"Adobe generative image features.","url":"https://www.adobe.com/sensei/generative-ai/firefly.html"},
+    {"name":"Freepik AI","stage":["Visual Design & Design System"],"price":"Freemium","what":"AI image generation/editing on stock platform.","url":"https://www.freepik.com/ai"},
+    {"name":"Unsplash","stage":["Visual Design & Design System"],"price":"Free","what":"Stock photos platform (AI-assisted discovery).","url":"https://unsplash.com/"},
+    {"name":"Pexels","stage":["Visual Design & Design System"],"price":"Free","what":"Free stock photos/videos platform.","url":"https://www.pexels.com/"},
+    {"name":"v0 by Vercel (Dev-heavy)","stage":["Handoff & Build"],"price":"Freemium","what":"Prompt-to-React/Next.js components.","url":"https://v0.dev/"},
+    {"name":"Cursor (Dev-heavy)","stage":["Handoff & Build"],"price":"Freemium","what":"AI code editor/pair programmer.","url":"https://cursor.com/"},
+    {"name":"Bolt.new (Dev-heavy)","stage":["Handoff & Build"],"price":"Freemium","what":"Prompt-to-full-stack starter.","url":"https://bolt.new/"},
+    {"name":"Lovable (Dev-heavy)","stage":["Handoff & Build"],"price":"Freemium","what":"AI builder that creates web apps.","url":"https://lovable.dev/"},
+    {"name":"LocofyAI (Dev-heavy)","stage":["Handoff & Build"],"price":"Freemium","what":"Export production code from design files.","url":"https://www.locofy.ai/"},
+    {"name":"Zapier (AI + Automation)","stage":["Handoff & Build","Site Builders & CMS / Launch"],"price":"Freemium","what":"Automate workflows; connect tools and CMS.","url":"https://zapier.com/"},
+{
+  "name": "Miro AI",
+  "stage": ["User Research & Requirements", "Information Architecture (IA)"],
+  "price": "Freemium",
+  "what": "AI-powered whiteboarding for research synthesis, flows, and workshops.",
+  "url": "https://miro.com/ai/"
+},
+{
+  "name": "Optimal Workshop",
+  "stage": ["Information Architecture (IA)", "Usability Testing & Validation"],
+  "price": "Paid",
+  "what": "Tree testing, card sorting, and IA validation tools.",
+  "url": "https://www.optimalworkshop.com/"
+},
+{
+  "name": "UXtweak",
+  "stage": ["Usability Testing & Validation", "Measure & Optimize"],
+  "price": "Freemium",
+  "what": "User testing, session recordings, and UX analytics.",
+  "url": "https://www.uxtweak.com/"
+},
+{
+  "name": "Khroma",
+  "stage": ["Visual Design & Design System"],
+  "price": "Free",
+  "what": "AI color palette generator trained on your preferences.",
+  "url": "https://khroma.co/"
+},
+{
+  "name": "Remove.bg",
+  "stage": ["Visual Design & Design System"],
+  "price": "Freemium",
+  "what": "AI background removal for images and design assets.",
+  "url": "https://www.remove.bg/"
+},
+{
+  "name": "Spline AI",
+  "stage": ["Visual Design & Design System", "Prototyping"],
+  "price": "Freemium",
+  "what": "Create interactive 3D scenes and assets with AI assistance.",
+  "url": "https://spline.design/ai"
+},
+{
+  "name": "Looka",
+  "stage": ["Visual Design & Design System"],
+  "price": "Paid",
+  "what": "AI logo design and brand identity generation.",
+  "url": "https://looka.com/"
+},
+{
+  "name": "Typeform AI",
+  "stage": ["User Research & Requirements"],
+  "price": "Paid",
+  "what": "AI-assisted form creation and survey analysis.",
+  "url": "https://www.typeform.com/product/ai/"
+}
+
+  ]
+}
+</script>
+
+<script>
+const rowsEl = document.getElementById('rows');
+const categorySelect = document.getElementById('categorySelect');
+const priceSelect = document.getElementById('priceSelect');
+const searchInput = document.getElementById('search');
+const countEl = document.getElementById('count');
+const resetBtn = document.getElementById('resetBtn');
+const exportBtn = document.getElementById('exportBtn');
+
+let data = { stages: [], tools: [] };
+data = JSON.parse(document.getElementById('tools-data').textContent);
+
+categorySelect.innerHTML =
+  ['<option value="">All stages</option>']
+  .concat(data.stages.map(s => `<option value="${s}">${s}</option>`))
+  .join('');
+
+function filtered() {
+  const q = searchInput.value.trim().toLowerCase();
+  const selStage = categorySelect.value;
+  const selPrice = priceSelect.value;
+  return data.tools.filter(t => {
+    if (q) {
+      const hay = (t.name + ' ' + (t.what || '')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    if (selStage && !(t.stage || []).includes(selStage)) return false;
+    if (selPrice && t.price !== selPrice) return false;
+    return true;
+  });
+}
+
+function render() {
+  const tools = filtered();
+  rowsEl.innerHTML = '';
+  tools.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'row grid';
+    row.innerHTML = `
+      <div><strong>${t.name}</strong></div>
+      <div>${t.what || ''}</div>
+      <div>${(t.stage || []).map(s => `<span class="badge">${s}</span>`).join('')}</div>
+      <div>${t.price || ''}</div>
+      <div><a href="${t.url}" target="_blank" rel="noopener noreferrer">Open ↗</a></div>
+    `;
+    rowsEl.appendChild(row);
+  });
+  countEl.textContent = `${tools.length} shown • ${data.tools.length} total`;
+}
+
+[searchInput, categorySelect, priceSelect].forEach(el => el.addEventListener('input', render));
+resetBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  categorySelect.value = '';
+  priceSelect.value = '';
+  render();
+});
+
+exportBtn.addEventListener('click', () => {
+  const rows = filtered();
+  const header = ['Name','Description','Stages','Price','URL'];
+  const csv = [header.join(',')]
+    .concat(rows.map(t => {
+      return [t.name, t.what, (t.stage||[]).join(' | '), t.price, t.url]
+        .map(x => '"' + String(x ?? '').replaceAll('"','""') + '"')
+        .join(',');
+    }))
+    .join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ai-tools.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+render();
+</script>
+</body>
+</html>
